@@ -4,7 +4,7 @@
 
 **Tên nhóm:** AI IN ACTION Copilot Team  
 **Track:** A · Learning OS (Vin AI Thực Chiến)  
-**Product/app đã chọn:** LMS khoá học + Discord lớp  
+**Product/app đã chọn:** App RAG chatbot standalone — tra cứu nội dung khoá học AI Thực Chiến  
 **Build slice đang nghĩ:** RAG chatbot tra cứu nội dung slide khoá học, trả về answer + source + next action
 
 ## 2. Self-use evidence
@@ -12,7 +12,7 @@
 | Observation | Screenshot/link | Path liên quan | Điều học được |
 |---|---|---|---|
 | Khi làm lab Day 3, cần nhớ lại cách dùng `tool_choice` trong Claude API — phải mở slide tìm thủ công mất 3–5 phút | — | Failure: tìm không ra, bỏ qua | Học viên không nhớ slide nào chứa thông tin cụ thể; search Discord cũng không ra vì câu hỏi dùng từ khác |
-| Câu hỏi "prompt caching hoạt động thế nào?" được hỏi lại ít nhất 3 lần trong Discord lớp trong cùng một buổi | Discord #general-batch02 | Failure: bot Discord không có, phải chờ TA | Cùng một câu hỏi lặp lại → không ai có nơi tra nhanh mà không làm phiền TA |
+| Câu hỏi "prompt caching hoạt động thế nào?" được hỏi lại ít nhất 3 lần trong Discord lớp trong cùng một buổi | Discord #general-batch02 | Failure: không có công cụ tra cứu nhanh, phải chờ TA hoặc cuộn slide | Cùng một câu hỏi lặp lại → không ai có nơi tra nhanh mà không làm phiền TA |
 | Slide Day 5 có 53 trang, không có mục lục/search — khi cần tìm "4 paths" phải cuộn thủ công | — | Low-confidence: không chắc tìm đúng slide | Lượng nội dung lớn, không có cơ chế tra cứu theo ngữ nghĩa |
 
 ## 3. User / review / social evidence
@@ -56,9 +56,9 @@ trong khi fallback rõ ràng khi câu hỏi ngoài scope thay vì hallucinate.
 - [x] Đổi pain statement: ban đầu "khó tìm slide" → thực ra "không tra được theo ngữ nghĩa khi đang code"
 - [x] Đổi build slice: bỏ ý định build full chatbot → chỉ build một flow: hỏi → RAG → answer + source + next action
 - [x] Đổi Auto/Aug decision: chọn augmentation (AI gợi ý, user verify source) thay vì automation
-- [ ] Đổi 4 paths
-- [ ] Đổi failure mode
-- [ ] Đổi owner/test plan
+- [x] Đổi 4 paths → xem `synthesis-decide-toolkit.md` Section 7: Happy / Low-confidence / Failure / Correction
+- [x] Đổi failure mode → Failure path: câu ngoài scope → fallback rõ, không hallucinate (owner: Lê Đình Sỹ)
+- [x] Đổi owner/test plan → Vũ Văn Huy: backend + low-confidence/correction; Lê Đình Sỹ: QA happy/failure path
 
 ```text
 Trước evidence, nhóm định build chatbot trả lời câu hỏi chung về AI.
