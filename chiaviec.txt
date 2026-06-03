@@ -1,0 +1,6 @@
+Người	Vai trò	Kết quả phải bàn giao
+Người 1	Data / Knowledge Base	chunks.jsonl, manifest.json, ChromaDB/vectorstore, retriever test chạy được
+Người 2	Backend RAG + API Model	Hàm ask_copilot(question) trả answer + source + next action
+Người 3	Frontend Streamlit UI	Giao diện chat demo chạy được
+Người 4	QA / Evaluation / Demo Test	Bộ câu hỏi test, test fallback, test accuracy, screenshot demo
+Người 5	README / Evidence / Thin SPEC / Presentation	README, evidence pack, thin spec, demo script, slide ngắn
