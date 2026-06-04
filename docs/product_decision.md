@@ -6,17 +6,17 @@ Tài liệu này ghi lại các quyết định sản phẩm chính và lý do c
 
 ## Quyết định 1: RAG thay vì chatbot chung
 
-**Chọn:** RAG (Retrieval-Augmented Generation) trên data text slide 6 ngày đầu.
+**Chọn:** RAG (Retrieval-Augmented Generation) trên data text slide 5 ngày đầu.
 
-**Không chọn:** Chatbot AI chung như ChatGPT/MiMo không có context khoá học.
+**Không chọn:** Chatbot AI chung không có context khoá học.
 
 **Lý do:**
 
-Evidence cho thấy pain cụ thể là "không biết tìm ở slide nào khi đang làm lab" — không phải "không có AI để hỏi". Học viên đã có ChatGPT; vấn đề là ChatGPT không biết nội dung giáo trình AI Thực Chiến và không có nguồn để verify.
+Evidence cho thấy pain cụ thể là "không biết tìm ở slide nào khi đang làm lab" — không phải "không có AI để hỏi". Học viên đã có ChatGPT/Gemini; vấn đề là chúng không biết nội dung giáo trình AI Thực Chiến và không có nguồn để verify.
 
 RAG giải quyết đúng pain: câu trả lời grounded trên đúng slide, có source cụ thể. Chatbot generic không làm được điều này.
 
-**Trade-off chấp nhận:** RAG phức tạp hơn, cần build index trước. Nhưng scope chỉ là 6 ngày đầu (~160 trang slide) — đủ nhỏ để build trong 1 ngày.
+**Trade-off chấp nhận:** RAG phức tạp hơn, cần build index trước. Nhưng scope chỉ là 6 ngày đầu, đủ nhỏ để build trong 1 ngày.
 
 ---
 
@@ -33,7 +33,7 @@ Sản phẩm hỗ trợ học tập. Nếu AI tự quyết và sai, học viên 
 **Human role cụ thể:**
 - **Reviewer:** kiểm tra lại source Copilot đưa ra
 - **Decider:** chọn thông tin nào dùng cho bài nộp
-- **Rescuer:** nếu AI sai, hỏi lại cụ thể hơn hoặc hỏi mentor/TA
+- **Rescuer:** nếu AI sai, hỏi lại cụ thể hơn hoặc hỏi mentor
 
 ---
 
@@ -78,12 +78,12 @@ Prompt rule: "Chỉ trả lời dựa trên CONTEXT được cung cấp. Nếu k
 
 **Lý do:**
 
-- Scope là 6 ngày × ~50 slide — không cần cloud vector DB
+- Scope là 5 ngày × ~50 slide — không cần cloud vector DB
 - ChromaDB chạy local, không cần API key riêng, không có latency mạng
 - Setup đơn giản: `pip install chromadb`, không cần infrastructure
 - Phù hợp với constraint "build trong 1 ngày"
 
-**Trade-off chấp nhận:** Không scale lên production lớn. Nhưng scope cam kết trong spec chỉ là 6 ngày đầu.
+**Trade-off chấp nhận:** Không scale lên production lớn. Nhưng scope cam kết trong spec chỉ là 5 ngày đầu.
 
 ---
 
@@ -95,7 +95,7 @@ Prompt rule: "Chỉ trả lời dựa trên CONTEXT được cung cấp. Nếu k
 
 - Học viên không chỉ cần định nghĩa — cần biết làm gì tiếp (next action)
 - Thiếu source → không verify được → mất độ tin cậy
-- Pattern học từ GitHub Copilot Chat (answer + source) và Notion AI (source link)
+- Pattern học từ GitHub Copilot Chat (answer + source)
 
 Prompt template enforce 3 phần này ở mọi happy-path response.
 
@@ -105,7 +105,7 @@ Prompt template enforce 3 phần này ở mọi happy-path response.
 
 **Trong scope:**
 - Chat box nhập câu hỏi tự nhiên
-- RAG trên data text slide Day 1–6
+- RAG trên data text slide Day 1–5
 - Output: Answer + Source + Next Action
 - Xử lý đủ 4 paths với similarity threshold
 - 4 câu hỏi demo + 1 failure path
@@ -115,4 +115,4 @@ Prompt template enforce 3 phần này ở mọi happy-path response.
 - Upload tài liệu động từ UI
 - Fine-tune model, chấm điểm tự động
 - Tích hợp Discord thật
-- Nội dung ngoài 6 ngày đầu
+- Nội dung ngoài 5 ngày đầu
