@@ -6,7 +6,7 @@
 
 > "Nhóm mình là C401-Vinflow, làm Track A — Learning OS.
 >
-> Pain mình tự dùng thật: khi làm hackathon Day 5, cần tra lại 'Evidence Pack gồm những phần nào?' — phải mở PDF 74 trang của Day 4, cuộn tìm thủ công mất 3–5 phút. Không có semantic search, Ctrl+F không đủ vì không nhớ keyword chính xác.
+> Pain nhóm tự dùng thật: khi làm hackathon Day 5, cần tra lại Thin SPEC gồm những phần nào?' — phải mở PDF 53 trang của Day 5, cuộn tìm thủ công mất 3-5 phút. Không có semantic search, nhấn Ctrl+F không được. [Day 5 slide 40 — Thin SPEC]
 >
 > Sản phẩm là **AI IN ACTION Copilot** — RAG chatbot tra cứu nội dung giáo trình 6 ngày đầu, trả về Answer + Source + Next Action."
 
