@@ -1,51 +1,60 @@
-# Day 05 Lab — AI IN ACTION Copilot
+﻿# Day06-C401-NhomXX
 
-> Track A · Learning OS (Vin AI Thực Chiến) · Batch 02
+> Track A - Learning OS (Vin AI Thuc Chien) - Batch 02
 
-RAG chatbot trả lời câu hỏi nội dung khoá học AI Thực Chiến, trả về answer + source + next action.
+## Thanh vien
 
-## Nhóm và phân công
+| Ten | MSSV | Vai tro |
+|-----|------|---------|
+| Vu Quoc Bao | 2A202600541 | Data / Knowledge Base |
+| Vu Van Huy | 2A202600750 | Backend RAG + API |
+| Nguyen Trung Kien | 2A202600969 | Frontend Streamlit UI |
+| Le Dinh Sy | 2A202600770 | QA / Evaluation / Demo Test |
+| Pham Hoang Anh Kiet | 2A202600797 | README / Evidence / SPEC / Presentation |
 
-| Tên | MSSV | Vai trò | Deliverable |
-|---|---|---|---|
-| Vũ Quốc Bảo | 2A202600541 | Data / Knowledge Base | chunks.jsonl, manifest.json, ChromaDB/vectorstore, retriever test chạy được |
-| Vũ Văn Huy | 2A202600750 | Backend RAG + API | `ask_copilot(question)` → answer + source + next action |
-| Nguyễn Trung Kiên | 2A202600969 | Frontend Streamlit UI | Giao diện chat demo chạy được |
-| Lê Đình Sỹ | 2A202600770 | QA / Evaluation / Demo Test | Bộ câu hỏi test, test fallback, test accuracy, screenshot demo |
-| Phạm Hoàng Anh Kiệt | 2A202600797 | README / Evidence / Thin SPEC / Presentation | README, evidence pack, thin spec, demo script |
+## San pham: AI IN ACTION Copilot
 
-## Tài liệu trong folder này
+RAG chatbot tra loi cau hoi noi dung khoa hoc AI Thuc Chien, tra ve answer + source + next action.
 
-| Folder / File | Nội dung |
-|---|---|
-| `01-invidual-workshop/app-teardown.md` | Mổ app V-AI: vẽ flow, tìm path yếu, viết finding thành product decision. |
-| `02-group-spec/evidence-pack-template.md` | Evidence pack: self-use + review + competitor, insight, opportunity. |
-| `02-group-spec/synthesis-decide-toolkit.md` | Gom evidence → insight → opportunity → câu chốt build slice. |
-| `02-group-spec/thin-spec-template.md` | Thin SPEC cuối Day 05: build slice, 4 paths, failure mode, owner plan. |
-
-## Build slice
-
-```text
-Cho học viên AI Thực Chiến đang làm lab cần tra nhanh khái niệm/framework trong slide,
-prototype dùng RAG để lấy đoạn liên quan từ ChromaDB và trả lời kèm nguồn (day + section),
-tạo ra answer + source reference + gợi ý next action,
-và xử lý câu ngoài scope bằng fallback rõ ràng thay vì hallucinate.
+```
+Question -> RAG Search (ChromaDB) -> LLM (MIMO API) -> Answer + Source + Next Action
 ```
 
-## Cấu trúc repo nộp bài Day 06
+## Cau truc repo
 
-Mỗi học viên nộp **một repo cá nhân**:
-
-```text
-Day06-MãHọcViên-HọVàTên/
-├── 01-invidual-workshop/
-│   └── reflection.md
-└── 02-group-spec/
-    ├── spec-final.md
-    ├── prototype-readme.md
-    ├── demo-slides.pdf
-    └── prompt-tests-or-failure-log.md
+```
+Day06-C401-NhomXX/
+├── README.md        <- Ban dang doc file nay
+├── spec/            <- SPEC san pham (spec.md)
+│   ├── README.md
+│   └── spec.md
+└── codebase/        <- Toan bo code prototype
+    ├── README.md    <- Huong dan chay
+    ├── app.py       <- Streamlit UI
+    ├── src/         <- RAG backend
+    └── data/        <- Knowledge base
 ```
 
-- `01-invidual-workshop/`: reflection cá nhân — vai trò, việc đã làm, phần AI hỗ trợ, bài học sau demo.
-- `02-group-spec/`: bản làm chung của nhóm. Mỗi học viên copy bản cuối vào repo cá nhân.
+## Chay nhanh
+
+```bash
+cd codebase
+pip install -r requirements.txt
+cp .env.example .env        # dien API key
+python -m src.dataset.build_index --rebuild
+streamlit run app.py
+```
+
+## Cau hoi demo
+
+- "Day 5 can nop gi?"
+- "Evidence Pack gom nhung phan nao?"
+- "Prototype Level 3 yeu cau gi?"
+- "Toi nen mua laptop gaming nao?" (failure path)
+
+## Tai lieu Day 05
+
+| Folder | Noi dung |
+|--------|----------|
+| `01-invidual-workshop/` | Mo app AI that: ve flow, tim path yeu, viet finding |
+| `02-group-spec/` | Evidence pack, synthesis toolkit, thin SPEC template |
