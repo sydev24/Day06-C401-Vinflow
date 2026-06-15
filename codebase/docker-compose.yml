@@ -1,0 +1,16 @@
+services:
+  vinflow-copilot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vinflow-copilot
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      STREAMLIT_SERVER_FILE_WATCHER_TYPE: "none"
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+    volumes:
+      - ./data/logs:/app/data/logs
+    restart: unless-stopped

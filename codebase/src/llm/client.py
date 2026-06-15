@@ -11,15 +11,43 @@ class LLMClient:
         model: Optional[str] = None,
         timeout: int = 60,
     ):
-        self.api_base = api_base or os.getenv("MIMO_API_BASE", "https://token-plan-sgp.xiaomimimo.com/v1")
-        self.api_key = api_key or os.getenv("MIMO_API_KEY", "")
-        self.model = model or os.getenv("MIMO_MODEL", "mimo-v2.5-pro")
+        # Nhận diện API key và thiết lập giá trị mặc định cho từng provider
+        gemini_key = os.getenv("GEMINI_API_KEY", "")
+        mimo_key = os.getenv("MIMO_API_KEY", "")
+        openai_key = os.getenv("OPENAI_API_KEY", "")
+
+        if gemini_key:
+            default_base = "https://generativelanguage.googleapis.com/v1beta/openai/"
+            default_model = "gemini-1.5-flash"
+            active_key = gemini_key
+        elif mimo_key:
+            default_base = "https://token-plan-sgp.xiaomimimo.com/v1"
+            default_model = "mimo-v2.5-pro"
+            active_key = mimo_key
+        elif openai_key:
+            default_base = "https://api.openai.com/v1"
+            default_model = "gpt-4o-mini"
+            active_key = openai_key
+        else:
+            active_key = ""
+            default_base = "https://token-plan-sgp.xiaomimimo.com/v1"
+            default_model = "mimo-v2.5-pro"
+
+        self.api_key = api_key or active_key
+        
+        # Chọn base_url phù hợp (ưu tiên biến môi trường tương ứng)
+        if gemini_key:
+            self.api_base = api_base or os.getenv("GEMINI_API_BASE") or os.getenv("MIMO_API_BASE") or default_base
+            self.model = model or os.getenv("GEMINI_MODEL") or os.getenv("MIMO_MODEL") or default_model
+        else:
+            self.api_base = api_base or os.getenv("MIMO_API_BASE") or os.getenv("OPENAI_API_BASE") or default_base
+            self.model = model or os.getenv("MIMO_MODEL") or os.getenv("OPENAI_MODEL") or default_model
+
         self.timeout = timeout
 
         if not self.api_key:
             raise ValueError(
-                "MIMO_API_KEY is not set. "
-                "Create a .env file based on .env.example or set the environment variable."
+                "Không tìm thấy API Key. Vui lòng cấu hình GEMINI_API_KEY, MIMO_API_KEY, hoặc OPENAI_API_KEY trong file .env."
             )
 
         self.client = OpenAI(
